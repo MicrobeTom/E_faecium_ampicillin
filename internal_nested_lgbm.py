@@ -22,7 +22,7 @@ from sklearn.model_selection import (
 )
 
 from tools_final import (
-    load_data_nested_inverted,
+    load_data_nested,
     get_separated_shap_values_tree,
     get_top_shap_indices,
     match_shap_bins_with_buffer,
@@ -35,10 +35,10 @@ from tools_final import (
 )
 #########################
 method = "RandomCV"
-testdataset = "MS-UMG_reg_warpedSELF"
-traindataset = "MS-UMG_reg_warpedSELF"
-# testdataset = "TUM-warped"
-# traindataset = "TUM-warped"
+testdataset = "MS-UMG_warped_MS-UMG"
+traindataset = "MS-UMG_warped_MS-UMG"
+# testdataset = "TUM-warped_TUM"
+# traindataset = "TUM-warped_TUM"
 scoring_method = "mcc"  # choices: "f1-score susceptible", "mcc"
 use_outer_early_stop = True
 earlystop_n = 50
@@ -331,7 +331,7 @@ all_aps = []
 best_mcc_each_seed = []
 
 for seed in seeds:
-    X, y = load_data_nested_inverted(seed=seed, testdataset=testdataset, traindataset=traindataset)
+    X, y = load_data_nested(seed=seed, testdataset=testdataset, traindataset=traindataset)
 
     seed_results,fold_curves,ap_results,macro_curve,best_per_fold = nested_cross_validation(
         X,y,param_grid,

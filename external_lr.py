@@ -18,7 +18,7 @@ from sklearn.metrics import (
 from sklearn.model_selection import StratifiedKFold, RandomizedSearchCV
 
 from tools_final import (
-    load_data_comb_5f_inverted,
+    load_data_comb_5f,
     get_separated_shap_values_log,
     get_top_shap_indices,
     match_shap_bins_with_buffer,
@@ -32,11 +32,11 @@ from tools_final import (
 
 #########################
 method = "RandomCV"
-traindataset = "MS-UMG_reg_warpedSELF"
-testdataset = "TUM-warpedMS-UMG"
-# traindataset = "TUM-warped"
-# testdataset = "MS-UMG_reg_warpedTUM"
-scoring_method = "mcc"
+traindataset = "MS-UMG_wapred_MS-UMG"
+testdataset = "TUM-warped_MS-UMG"
+# traindataset = "TUM-warped_TUM"
+# testdataset = "MS-UMG_warped_TUM"
+scoring_method = "mcc" # choices: "f1-score susceptible", "mcc"
 n_iter_call = 2
 #########################
 
@@ -269,7 +269,7 @@ if __name__ == "__main__":
     auc_results = []
 
     for seed in seeds:
-        X_train, y_train, X_test, y_test = load_data_comb_5f_inverted(
+        X_train, y_train, X_test, y_test = load_data_comb_5f(
             seed=seed,
             testdataset=testdataset,
             traindataset=traindataset
